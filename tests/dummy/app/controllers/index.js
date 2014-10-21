@@ -5,6 +5,6 @@ export default Ember.Controller.extend({
   now: new Date(),
   lastHour: new Date(new Date().valueOf() - (60*60*1000)),
   date: new Date(),
-  computedDate: moment('now', 'MM/DD/YY hh:mm:ss'),
+  computedDate: moment('date', 'MM/DD/YY hh:mm:ss'),
   computedOneHourAgo: ago('lastHour')
 });

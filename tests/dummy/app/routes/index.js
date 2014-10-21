@@ -5,9 +5,9 @@ export default Ember.Route.extend({
     this._super(controller, model);
 
     setInterval(function () {
-        Ember.run(function () {
-            controller.set('date', new Date());
-        });
+      Ember.run(function () {
+        controller.set('date', new Date());
+      });
     }, 1000);
   }
 });
