@@ -1,0 +1,29 @@
+import Ember from 'ember';
+import moment from 'moment';
+import { descriptorFor } from './moment';
+
+var get = Ember.get;
+var emberComputed = Ember.computed;
+
+export default function computedAgo(date, maybeInputFormat) {
+  var args = [date], momentArgs, computed;
+
+  computed = emberComputed(date, function () {
+    momentArgs = [get(this, date)];
+
+    if (arguments.length > 1) {
+      var desc = descriptorFor.call(this, maybeInputFormat);
+      var input = desc ? get(this, maybeInputFormat) : maybeInputFormat;
+
+      if (desc && computed._dependentKeys.indexOf(maybeInputFormat) === -1) {
+        computed.property(maybeInputFormat);
+      }
+
+      momentArgs.push(input);
+    }
+
+    return moment.apply(this, momentArgs).fromNow();
+  });
+
+  return computed.property.apply(computed, args).readOnly();
+}
