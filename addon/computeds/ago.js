@@ -6,14 +6,15 @@ var get = Ember.get;
 var emberComputed = Ember.computed;
 
 export default function computedAgo(date, maybeInputFormat) {
-  var args = [date], momentArgs, computed;
+  var args = [date];
+  var momentArgs, computed, desc, input;
 
   computed = emberComputed(date, function () {
     momentArgs = [get(this, date)];
 
     if (arguments.length > 1) {
-      var desc = descriptorFor.call(this, maybeInputFormat);
-      var input = desc ? get(this, maybeInputFormat) : maybeInputFormat;
+      desc = descriptorFor.call(this, maybeInputFormat);
+      input = desc ? get(this, maybeInputFormat) : maybeInputFormat;
 
       if (desc && computed._dependentKeys.indexOf(maybeInputFormat) === -1) {
         computed.property(maybeInputFormat);
