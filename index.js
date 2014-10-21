@@ -14,7 +14,7 @@ module.exports = {
 
     this._super.included(app);
 
-    app.import(app.bowerDirectory + '/momentjs/moment.js');
+    app.import(app.bowerDirectory + '/moment/moment.js');
 
     app.import(app.bowerDirectory + '/ember-cli-moment-shim/moment-shim.js', {
       exports: {
