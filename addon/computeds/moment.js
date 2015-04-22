@@ -38,6 +38,10 @@ export default function computedMoment(date, outputFormat, maybeInputFormat) {
     });
 
     outputFormat = propertyValues[0];
+    
+    if (!outputFormat) {
+      return moment.apply(this);
+    }
 
     if (propertyValues.length > 1) {
       maybeInputFormat = propertyValues[1];
